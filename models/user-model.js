@@ -24,10 +24,17 @@ const userSchema = new Schema(
       required: true,
       default: "normal"
     },
-    // ids of galleries that others have given you access to
-    othersGalleries:[
-      {type:Schema.Types.ObjectId,ref:"Gallery"}
-    ],
+    // user measurements
+
+    chest: {type: Number},
+    
+    waist: {type: Number},
+    hips: {type: Number},
+    inseam: {type: Number},
+
+    // othersWardrobes:[
+    //   {type:Schema.Types.ObjectId,ref:"Gallery"}
+    // ],
 
   },
 
