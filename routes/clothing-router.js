@@ -5,8 +5,9 @@ const Clothing = require("../models/clothing-model.js");
 const router = express.Router();
 
 
-// GET /closet - Retrieve the list of clothing
-router.get("/closet", (req, res, next) => {
+
+// GET /clothing - Retrieve the list of clothing
+router.get("/clothing", (req, res, next) => {
   Clothing.find()
     // sort the newest clothing first
     .sort({ createdAt: -1 })
@@ -17,44 +18,44 @@ router.get("/closet", (req, res, next) => {
 });
 
 // POST /clothing - Create a new clothing item (add to the wardrobe)
-router.post("/closet", (req, res, next) => {
-  const { model, brand, price, image, specs } = req.body;
+router.post("/clothing", (req, res, next) => {
+  const { type, link, brand, price, image, notes } = req.body;
 
-  Clothing.create({ model, brand, price, image, specs })
+  Clothing.create({ type, brand, price, image, specs })
     // send the query results as a JSON response to the client
-    .then(phoneDoc => res.json(phoneDoc))
+    .then(clothingDoc => res.json(clothingDoc))
     .catch(err => next(err));
 });
 
-// GET /phones/:id - Retrieve the details of ONE phone
-router.get("/phones/:id", (req, res, next) => {
+// GET /clothing/:id - Retrieve the details of ONE clothing item
+router.get("/clothing/:id", (req, res, next) => {
   const { id } = req.params;
-  Phone.findById(id)
+  Clothing.findById(id)
     // send the query results as a JSON response to the client
-    .then(phoneDoc => res.json(phoneDoc))
+    .then(clothingDoc => res.json(clothingDoc))
     .catch(err => next(err));
 });
 
-// PUT /phones/:id - Update ONE phone
-router.put("/phones/:id", (req, res, next) => {
+// PUT /clothing/:id - Update ONE clothing item
+router.put("/clothing/:id", (req, res, next) => {
   const { id } = req.params;
-  const { model, brand, price, image, specs } = req.body;
+  const { type, link, brand, price, image, notes } = req.body;
 
-  Phone.findByIdAndUpdate(
+  Clothing.findByIdAndUpdate(
     id,
-    { $set: { model, brand, price, image, specs } },
+    { $set: { type, link, brand, price, image, notes  } },
     // "new" gets the update version of the document
     { runValidators: true, new: true },
   )
-  .then(phoneDoc => res.json(phoneDoc))
+  .then(clothingDoc => res.json(clothingDoc))
   .catch(err => next(err));
 });
 
-// DELETE /phones/:id - Delete ONE phone
-router.delete("/phones/:id", (req, res, next) => {
+// DELETE /clothing/:id - Delete ONE clothing item
+router.delete("/clothing/:id", (req, res, next) => {
   const { id } = req.params;
-  Phone.findByIdAndRemove(id)
-    .then(phoneDoc => res.json(phoneDoc))
+  Clothing.findByIdAndRemove(id)
+    .then(clothingDoc => res.json(clothingDoc))
     .catch(err => next(err));
 });
 

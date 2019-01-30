@@ -2,11 +2,14 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const wardrobeSchema = new Schema(
-  {
-    wardrobeOwner:{type:Schema.Types.ObjectId, ref:"User", required: true},
-    measurements:{type:Schema.Types.ObjectId, ref:"Measurements"},
-    clothingItem:{type:Schema.Types.ObjectId, ref:"Item"},
+const clothingSchema = new Schema({
+    // itemOwner:{type:Schema.Types.ObjectId, ref:"User", required: true},
+    type: {type: String, required: true},
+    link: {type: String, required: true},
+    brand: {type: String, required: true},
+    price: {type: Number, required: true},
+    image: {type: String, required: false},
+    notes: {type: String, required: true},
   },
 
   {
@@ -15,6 +18,7 @@ const wardrobeSchema = new Schema(
   }
 );
 
-const Wardrobe = mongoose.model("Wardrobe", wardrobeSchema);
+// "Clothing" model -> "clothing" collection
+const Clothing = mongoose.model("Clothing", clothingSchema);
 
-module.exports = Wardrobe;
+module.exports = Clothing;
