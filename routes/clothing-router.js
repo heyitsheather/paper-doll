@@ -21,7 +21,7 @@ router.get("/clothing", (req, res, next) => {
 router.post("/clothing", (req, res, next) => {
   const { type, link, brand, price, image, notes } = req.body;
 
-  Clothing.create({ type, brand, price, image, specs })
+  Clothing.create({ type, link, brand, price, image, notes })
     // send the query results as a JSON response to the client
     .then(clothingDoc => res.json(clothingDoc))
     .catch(err => next(err));

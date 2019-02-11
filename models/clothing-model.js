@@ -8,8 +8,9 @@ const clothingSchema = new Schema({
     link: {type: String, required: true},
     brand: {type: String, required: true},
     price: {type: Number, required: true},
+    size: {type: String, required: false},
     image: {type: String, required: false},
-    notes: {type: String, required: true},
+    notes: {type: String, required: false},
   },
 
   {
