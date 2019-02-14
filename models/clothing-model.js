@@ -11,6 +11,8 @@ const clothingSchema = new Schema({
     size: {type: String, required: false},
     image: {type: String, required: false},
     notes: {type: String, required: false},
+    width: {type: Number, required: true},
+    height: {type: Number, required: true},
   },
 
   {
