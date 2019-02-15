@@ -25,10 +25,10 @@ const userSchema = new Schema(
       default: "normal"
     },
     // user measurements
-    chest: {type: Number, required: true},
-    waist: {type: Number, required: true},
-    hips: {type: Number, required: true},
-    inseam: {type: Number, required: true},
+    chest: {type: Number, required: false},
+    waist: {type: Number, required: false},
+    hips: {type: Number, required: false},
+    inseam: {type: Number, required: false},
 
     // othersWardrobes:[
     //   {type:Schema.Types.ObjectId,ref:"Gallery"}
