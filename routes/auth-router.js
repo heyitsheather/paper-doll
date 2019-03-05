@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 router.post("/signup", (req, res, next) => {
-  const { fullName, email, originalPassword } = req.body;
+  const { fullName, email, originalPassword, chest, hips, waist, inseam } = req.body;
 
   if (!originalPassword || originalPassword.match(/[0-9]/) === null) {
     // show error JSON if password is empty or doesn't have a number
@@ -18,7 +18,7 @@ router.post("/signup", (req, res, next) => {
   // encrypt the submitted password before saving
   const encryptedPassword = bcrypt.hashSync(originalPassword, 10);
 
-  User.create({ fullName, email, encryptedPassword })
+  User.create({ fullName, email, encryptedPassword, chest, hips, waist, inseam })
     .then(userDoc => {
       // Log in the user automatically when they sign up
       req.logIn(userDoc, () => {

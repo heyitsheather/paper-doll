@@ -6,6 +6,10 @@ const Schema = mongoose.Schema;
 
 const clothingSchema = new Schema({
     itemOwner:{type: Schema.Types.ObjectId, ref:"User", required: false},
+    itemChest: {type: Number, required: false},
+    itemWaist: {type: Number, required: false},
+    itemHips: {type: Number, required: false},
+    itemInseam: {type: Number, required: false},
     type: {type: String, required: true},
     link: {type: String, required: true},
     brand: {type: String, required: true},
