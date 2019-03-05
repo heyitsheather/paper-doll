@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 
+const User = require("./user-model")
+
 const Schema = mongoose.Schema;
 
 const clothingSchema = new Schema({
-    // itemOwner:{type:Schema.Types.ObjectId, ref:"User", required: true},
+    itemOwner:{type: Schema.Types.ObjectId, ref:"User", required: false},
     type: {type: String, required: true},
     link: {type: String, required: true},
     brand: {type: String, required: true},
@@ -11,8 +13,9 @@ const clothingSchema = new Schema({
     size: {type: String, required: false},
     image: {type: String, required: false},
     notes: {type: String, required: false},
-    width: {type: Number, required: true},
-    height: {type: Number, required: true},
+    width: {type: Number, required: false},
+    height: {type: Number, required: false},
+    // key:{type: String, required: false}
   },
 
   {

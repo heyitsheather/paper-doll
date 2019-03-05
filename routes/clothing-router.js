@@ -21,7 +21,7 @@ router.get("/clothing", (req, res, next) => {
 router.post("/clothing", (req, res, next) => {
   const { type, link, brand, price, image, notes, width, height } = req.body;
 
-  Clothing.create({ type, link, brand, price, image, notes, width, height })
+  Clothing.create({itemOwner: req.user._id, type, link, brand, price, image, notes, width, height })
     // send the query results as a JSON response to the client
     .then(clothingDoc => res.json(clothingDoc))
     .catch(err => next(err));
@@ -38,12 +38,12 @@ router.get("/clothing/:id", (req, res, next) => {
 
 // PUT /clothing/:id - Update ONE clothing item
 router.put("/clothing/:id", (req, res, next) => {
-  const { id } = req.params;
-  const { type, link, brand, price, image, notes } = req.body;
+  const { id} = req.params;
+  const { type, link, brand, price, notes } = req.body;
 
   Clothing.findByIdAndUpdate(
     id,
-    { $set: { type, link, brand, price, image, notes  } },
+    { $set: { type, link, brand, price, notes  } },
     // "new" gets the update version of the document
     { runValidators: true, new: true },
   )
