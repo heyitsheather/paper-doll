@@ -17,6 +17,7 @@ router.get("/clothing", (req, res, next) => {
     .catch(err => next(err));
 });
 
+
 // POST /clothing - Create a new clothing item (add to the wardrobe)
 router.post("/clothing", (req, res, next) => {
   const { type, link, brand, price, image, notes, width, height } = req.body;
