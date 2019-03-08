@@ -13,15 +13,16 @@ const router = express.Router();
 
 
 // // Filter by user's measurements (exact matches only)
-// Clothing.find({
-//     itemChest: { $eq: req.user.chest },
-//     itemWaist: { $eq: req.user.waist },
-//     itemHips: { $eq: req.user.hips },
-//     itemInseam: { $eq: req.user.inseam }
-//   })
-//   .then(clothingResults => res.json(clothingResults))
-//   .catch(err => next(err));
-
+router.get("/matchclothing", (req, res, next) => {
+Clothing.find({
+    itemChest: { $eq: req.user.chest },
+    itemWaist: { $eq: req.user.waist },
+    itemHips: { $eq: req.user.hips },
+    itemInseam: { $eq: req.user.inseam }
+  })
+  .then(clothingResults => res.json(clothingResults))
+  .catch(err => next(err));
+});
 
 
 // GET /clothing - Retrieve the list of clothing
