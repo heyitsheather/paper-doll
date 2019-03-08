@@ -6,9 +6,27 @@ const router = express.Router();
 
 
 
+// // Filter by itemOwner
+// Clothing.find({ itemOwner: { $eq: req.user._id } })
+//   .then(clothingResults => res.json(clothingResults))
+//   .catch(err => next(err));
+
+
+// // Filter by user's measurements (exact matches only)
+// Clothing.find({
+//     itemChest: { $eq: req.user.chest },
+//     itemWaist: { $eq: req.user.waist },
+//     itemHips: { $eq: req.user.hips },
+//     itemInseam: { $eq: req.user.inseam }
+//   })
+//   .then(clothingResults => res.json(clothingResults))
+//   .catch(err => next(err));
+
+
+
 // GET /clothing - Retrieve the list of clothing
 router.get("/clothing", (req, res, next) => {
-  Clothing.find()
+  Clothing.find({ itemOwner: { $eq: req.user._id } })
     // sort the newest clothing first
     .sort({ createdAt: -1 })
     .limit(20)
